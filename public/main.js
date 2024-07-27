@@ -14,7 +14,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
         return;
     }
 
-    const url = `/events?location=${encodeURIComponent(city)}, ${encodeURIComponent(state)}`;
+    const url = `/api/events?location=${encodeURIComponent(city)}, ${encodeURIComponent(state)}`;
 
     fetch(url)
         .then(response => response.json())

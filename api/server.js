@@ -35,8 +35,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-module.exports = app;
-/* Starts the server on the specified port and logs a confirmation message
+/* Starts the server on the specified port and logs a confirmation message */
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
-});*/
+});
