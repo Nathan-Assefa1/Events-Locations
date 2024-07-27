@@ -3,12 +3,18 @@ document.getElementById('searchButton').addEventListener('click', () => {
     const city = document.getElementById('city').value.trim(); // Remove any leading or trailing spaces
     const state = document.getElementById('state').value.trim();
 
+    // If the city or state field is empty, show an error message
     if (city === '' || state === '') {
-        // If the city field is empty, show an error message
         document.getElementById('results').innerHTML = 'Please enter both a city and state name.';
         return;
     }
-    const url = `/events?city=${encodeURIComponent(city)}`;
+    // If the state input isn't two characters, show an error message
+    if (state.length != 2) {
+        document.getElementById('results').innerHTML = 'Please enter a valid state abbreviation.';
+        return;
+    }
+
+    const url = `/events?location=${encodeURIComponent(city)}, ${encodeURIComponent(state)}`;
 
     fetch(url)
         .then(response => response.json())
@@ -28,8 +34,12 @@ function display(data) {
     let resultData = '';
     if (data) {
         for (const element of data) {
-            resultData += `<h2><a href="${element.link}" target="_blank">${element.title}</a></h2>
-            <p>${element.description}</p><hr>`;
+            resultData += `<h2><a href="${element.link}" target="_blank">${element.title}</a></h2>`;
+            if (element.description) {
+                resultData += `<p>${element.description}</p><hr>`;
+            } else {
+                resultData += `<p>No description provided.</p><hr>`
+            }
         }
         divResult.innerHTML = resultData;
     } else {
