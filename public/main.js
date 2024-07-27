@@ -8,7 +8,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
         document.getElementById('results').innerHTML = 'Please enter both a city and state name.';
         return;
     }
-    const url = `event-organizer-taupe.vercel.app/events?city=${encodeURIComponent(city)}`;
+    const url = `/events?city=${encodeURIComponent(city)}`;
 
     fetch(url)
         .then(response => response.json())
