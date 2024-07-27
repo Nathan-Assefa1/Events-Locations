@@ -18,7 +18,7 @@
       {
         "src": "/",
         "dest": "/public/index.html"
-      }
+      },
 
       {
         "src": "/main.js",
