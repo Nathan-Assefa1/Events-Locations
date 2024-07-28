@@ -17,14 +17,19 @@ document.getElementById('searchButton').addEventListener('click', () => {
     const url = `/api/events?location=${encodeURIComponent(city)}, ${encodeURIComponent(state)}`;
 
     fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            display(data.events_results);
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            document.getElementById('results').innerHTML = 'An error occurred while fetching data.';
-        });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        display(data.events_results);
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+        document.getElementById('results').innerHTML = 'An error occurred while fetching data.';
+    });
 });
 
 // Displays all of the event results from the JSON response
