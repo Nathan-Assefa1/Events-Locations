@@ -23,10 +23,11 @@ app.get('/api/events', async (req, res) => {
     const url = `https://serpapi.com/search?engine=google_events&q=Events+in+${encodeURIComponent(city)}&hl=en&gl=us&api_key=${apiKey}`;
 
     try {
-        const response = await axios.get(url); // HTTP GET request to the url using axios and waits for the response
+        const response = await axios.get(url);
         console.log('API Response:', response.data);
-        res.json(response.data); // Sends the JSON data received from SerpApi back to the client
+        res.json(response.data);
     } catch (error) {
+        console.error('Error fetching data:', error.response ? error.response.data : error.message);
         res.status(500).json({ error: 'Error fetching data' });
     }
 });
