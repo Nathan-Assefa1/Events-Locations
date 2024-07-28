@@ -24,7 +24,7 @@ app.get('/events', async (req, res) => {
 
     try {
         const response = await axios.get(url); // HTTP GET request to the url using axios and waits for the response
-        res.json(response.data); // Sends the JSON data received from SerpApi back to the client
+        res.status(200).json(response.data);  // Sends the JSON data received from SerpApi back to the client
     } catch (error) {
         res.status(500).json({ error: 'Error fetching data' });
     }
