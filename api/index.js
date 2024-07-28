@@ -8,13 +8,13 @@ const path = require('path');
 const axios = require('axios');
 require('dotenv').config({ path: path.join(__dirname, 'credentials', '.env') });
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Endpoint to fetch events
-app.get('/events', async (req, res) => {
+app.get('/api/events', async (req, res) => {
     /* Extracts the city parameter from the query string of the incoming request (ex: /events?city=Austin) */
     const city = req.query.location;
     const apiKey = f0380c1a62fee7a6d0ba21cf7a29b5cb5765d955e7c41957740180329b9003da;
