@@ -8,7 +8,7 @@ const path = require('path');
 const axios = require('axios');
 require('dotenv').config({ path: path.join(__dirname, 'credentials', '.env') });
 const app = express();
-//const port = 4000;
+const port = 4000;
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
