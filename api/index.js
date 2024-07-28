@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/api/events', async (req, res) => {
     /* Extracts the city parameter from the query string of the incoming request (ex: /events?city=Austin) */
     const city = req.query.location;
-    const apiKey = f0380c1a62fee7a6d0ba21cf7a29b5cb5765d955e7c41957740180329b9003da;
+    const apiKey = process.env.API_KEY;
     /* Constructs the URL for the SerpApi request, including the city parameter and API key. 
        encodeURIComponent(city) ensures that the city name is safely encoded for inclusion in the URL. */
     const url = `https://serpapi.com/search?engine=google_events&q=Events+in+${encodeURIComponent(city)}&hl=en&gl=us&api_key=${apiKey}`;
