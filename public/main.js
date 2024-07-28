@@ -18,12 +18,14 @@ document.getElementById('searchButton').addEventListener('click', () => {
 
     fetch(url)
     .then(response => {
+        console.log('Response status:', response.status);  // Log response status
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error(`Network response was not ok: ${response.statusText}`);
         }
         return response.json();
     })
     .then(data => {
+        console.log('Data received:', data);  // Log the received data
         display(data.events_results);
     })
     .catch(error => {
@@ -31,6 +33,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
         document.getElementById('results').innerHTML = 'An error occurred while fetching data.';
     });
 });
+
 
 // Displays all of the event results from the JSON response
 function display(data) {
