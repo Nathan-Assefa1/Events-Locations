@@ -14,7 +14,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Endpoint to fetch events
-app.get('/events', async (req, res) => {
+app.get('/api/events', async (req, res) => {
     /* Extracts the city parameter from the query string of the incoming request (ex: /events?city=Austin) */
     const city = req.query.location;
     const apiKey = process.env.API_KEY;
